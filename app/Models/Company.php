@@ -1,4 +1,3 @@
-<?php
 
 namespace App\Models;
 
@@ -10,5 +9,9 @@ class Company extends Model
     public function Job(){
         return $this->hasMany(Job::class); // or  ('App\Models\Job') both are same
     }
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
     use HasFactory;
 }
