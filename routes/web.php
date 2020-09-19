@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +17,19 @@ use App\Http\Controllers\JobController;
 */
 
 
-Auth::routes();
+
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/',[JobController::class,'index']);
 Route::get('jobs/{id}/{job}',[JobController::class,'show'])->name('jobs.show');
+Route::get('company/{id}/{company}',[CompanyController::class,'index'])->name('company.index');
+Route::get('user/profile', [UserProfileController::class, 'index']);
+Route::post('profile/store',[UserProfileController::class, 'store'])->name('profile.store');
+Route::post('profile/coverletter',[UserProfileController::class, 'coverletter'])->name('profile.coverletter');
+Route::post('profile/resume',[UserProfileController::class, 'resume'])->name('profile.resume');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
