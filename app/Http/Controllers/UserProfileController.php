@@ -10,7 +10,13 @@ class UserProfileController extends Controller
     public function index(){
         return view('profile.index');
     }
-    public function store(){
+    public function store(Request $request){
+        $this->validate($request,[
+           'dob'=>'required',
+           'gender'=>'required',
+           'address'=>'required',
+           'bio'=>'required|min:20',
+        ]);
         $user_id = auth()->user()->id;
         Profile::where('user_id',$user_id)->update([
             'dob'=>request('dob'),
@@ -22,6 +28,9 @@ class UserProfileController extends Controller
     }
 
     public function coverletter(Request $request){
+        $this->validate($request,[
+            'cover_letter'=>'required|mimes:pdf,docx,doc|max:3072'
+        ]);
         $user_id = auth()->user()->id;
         $cover = $request->file('cover_letter')
             ->store('public/files');
@@ -32,6 +41,9 @@ class UserProfileController extends Controller
     }
 
     public function resume(Request $request){
+        $this->validate($request,[
+            'resume'=>'required|mimes:pdf,docx,doc|max:3072'
+        ]);
         $user_id = auth()->user()->id;
         $resume = $request->file('resume')
             ->store('public/files');
@@ -39,5 +51,21 @@ class UserProfileController extends Controller
             'resume'=>$resume,
         ]);
         return redirect()->back()->with('message','Your resume updated successfully');
+    }
+
+
+    public function avatar(Request $request){
+        $user_id = auth()->user()->id;
+        if ($request->hasFile('avatar')){
+            $file = $request->file('avatar');
+            $text = $file->getClientOriginalExtension();
+            $filename = time().'.'.$text;
+            $file->move('upload/avatar',$filename);
+            Profile::where('user_id',$user_id)->update([
+                'avatar' =>$filename,
+            ]);
+
+            return redirect()->back()->with('message','Profile Photo Updated');
+        }
     }
 }
