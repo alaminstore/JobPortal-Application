@@ -23,94 +23,100 @@
                                 </div>
                             </div>
                         </form>
+                        {{--validation--}}
+                        @if( $errors->has('logo'))
+                            <div class="error red">
+                                {{$errors->first('logo')}}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-header">Update your info</div>
-                        <div class="card-body">
-                            <form action="{{route('profile.store')}}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="dob">Date of birth</label>
-                                    <input type="date" name="dob" class="form-control" value="{{Auth::user()->profile->dob}}">
+                    <div class="card-body">
+                        <form action="{{route('profile.store')}}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="dob">Date of birth</label>
+                                <input type="date" name="dob" class="form-control" value="{{Auth::user()->profile->dob}}">
+                            </div>
+                            {{--validation--}}
+                            @if( $errors->has('dob'))
+                                <div class="error red">
+                                    {{$errors->first('dob')}}
                                 </div>
-                                {{--validation--}}
-                                @if( $errors->has('dob'))
-                                    <div class="error red">
-                                        {{$errors->first('dob')}}
-                                    </div>
-                                @endif
-                                <div class="form-group">
-                                    <label for="gender"><b> Gender </b></label> &nbsp;
-                                    <input type="radio" value="male" name="gender"> &nbsp; Male&nbsp;
-                                    <input type="radio" value="female" name="gender"> &nbsp; Female&nbsp;
+                            @endif
+                            <div class="form-group">
+                                <label for="gender"><b> Gender </b></label> &nbsp;
+                                <input type="radio" value="male" name="gender"> &nbsp; Male&nbsp;
+                                <input type="radio" value="female" name="gender"> &nbsp; Female&nbsp;
+                            </div>
+                            {{--validation--}}
+                            @if( $errors->has('gender'))
+                                <div class="error red">
+                                    {{$errors->first('gender')}}
                                 </div>
-                                {{--validation--}}
-                                @if( $errors->has('gender'))
-                                    <div class="error red">
-                                        {{$errors->first('gender')}}
-                                    </div>
-                                @endif
+                            @endif
 
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <textarea name="address" id="address" cols="30" class="form-control" rows="3">{{Auth::user()->profile->address}}
-                                        {{Auth::user()->profile->adderss}}
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea name="address" id="address" cols="30" class="form-control" rows="3">{{Auth::user()->profile->address}}
+                                    {{Auth::user()->profile->adderss}}
                                     </textarea>
+                            </div>
+                            {{--validation--}}
+                            @if( $errors->has('address'))
+                                <div class="error red">
+                                    {{$errors->first('address')}}
                                 </div>
-                                {{--validation--}}
-                                @if( $errors->has('address'))
-                                    <div class="error red">
-                                        {{$errors->first('address')}}
-                                    </div>
-                                @endif
+                            @endif
 
-                                <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                                    <input name="phone" id="phone" value="{{Auth::user()->profile->phone}}" placeholder="017xxxxxxxx" class="form-control"/>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input name="phone" id="phone" value="{{Auth::user()->profile->phone}}" placeholder="017xxxxxxxx" class="form-control"/>
+                            </div>
+                            {{--validation--}}
+                            @if( $errors->has('phone'))
+                                <div class="error red">
+                                    {{$errors->first('phone')}}
                                 </div>
-                                {{--validation--}}
-                                @if( $errors->has('phone'))
-                                    <div class="error red">
-                                        {{$errors->first('phone')}}
-                                    </div>
-                                @endif
+                            @endif
 
-                                <div class="form-group">
-                                    <label for="bio">Objective</label>
-                                    <textarea name="bio" id="" cols="30" class="form-control" rows="3">{{Auth::user()->profile->bio}}</textarea>
+                            <div class="form-group">
+                                <label for="bio">Objective</label>
+                                <textarea name="bio" id="" cols="30" class="form-control" rows="3">{{Auth::user()->profile->bio}}</textarea>
+                            </div>
+                            {{--validation--}}
+                            @if( $errors->has('bio'))
+                                <div class="error red">
+                                    {{$errors->first('bio')}}
                                 </div>
-                                {{--validation--}}
-                                @if( $errors->has('bio'))
-                                    <div class="error red">
-                                        {{$errors->first('bio')}}
-                                    </div>
-                                @endif
+                            @endif
 
-                                <div class="form-group">
-                                    <label for="experience">Experience</label>
-                                    <input type="text" name="experience" placeholder="Fresher or years of experience?" value="{{Auth::user()->profile->experience}}" class="form-control">
+                            <div class="form-group">
+                                <label for="experience">Experience</label>
+                                <input type="text" name="experience" placeholder="Fresher or years of experience?" value="{{Auth::user()->profile->experience}}" class="form-control">
+                            </div>
+                            {{--validation--}}
+                            @if( $errors->has('experience'))
+                                <div class="error red">
+                                    {{$errors->first('experience')}}
                                 </div>
-                                {{--validation--}}
-                                @if( $errors->has('experience'))
-                                    <div class="error red">
-                                        {{$errors->first('experience')}}
-                                    </div>
-                                @endif
+                            @endif
 
 
-                                <div class="form-group">
-                                    <button class="btn btn-success btn-block btn-sm">Update</button>
+                            <div class="form-group">
+                                <button class="btn btn-success btn-block btn-sm">Update</button>
+                            </div>
+                            @if(Session::has('message'))
+                                <div class="alert alert-success">
+                                    {{Session::get('message')}}
                                 </div>
-                                @if(Session::has('message'))
-                                    <div class="alert alert-success">
-                                        {{Session::get('message')}}
-                                    </div>
-                                @endif
-                            </form>
-                        </div>
+                            @endif
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
@@ -179,6 +185,6 @@
                 @endif
             </div>
         </div>
-        </div>
+    </div>
     </div>
 @endsection
