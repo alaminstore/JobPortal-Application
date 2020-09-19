@@ -34,7 +34,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="dob">Date of birth</label>
-                                    <input type="date" name="dob" class="form-control">
+                                    <input type="date" name="dob" class="form-control" value="{{Auth::user()->profile->dob}}">
                                 </div>
                                 {{--validation--}}
                                 @if( $errors->has('dob'))
@@ -57,13 +57,24 @@
                                 <div class="form-group">
                                     <label for="address">Address</label>
                                     <textarea name="address" id="address" cols="30" class="form-control" rows="3">{{Auth::user()->profile->address}}
+                                        {{Auth::user()->profile->adderss}}
                                     </textarea>
                                 </div>
-
-                               {{--validation--}}
+                                {{--validation--}}
                                 @if( $errors->has('address'))
                                     <div class="error red">
                                         {{$errors->first('address')}}
+                                    </div>
+                                @endif
+
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input name="phone" id="phone" value="{{Auth::user()->profile->phone}}" placeholder="017xxxxxxxx" class="form-control"/>
+                                </div>
+                                {{--validation--}}
+                                @if( $errors->has('phone'))
+                                    <div class="error red">
+                                        {{$errors->first('phone')}}
                                     </div>
                                 @endif
 
@@ -77,6 +88,18 @@
                                         {{$errors->first('bio')}}
                                     </div>
                                 @endif
+
+                                <div class="form-group">
+                                    <label for="experience">Experience</label>
+                                    <input type="text" name="experience" placeholder="Fresher or years of experience?" value="{{Auth::user()->profile->experience}}" class="form-control">
+                                </div>
+                                {{--validation--}}
+                                @if( $errors->has('experience'))
+                                    <div class="error red">
+                                        {{$errors->first('experience')}}
+                                    </div>
+                                @endif
+
 
                                 <div class="form-group">
                                     <button class="btn btn-success btn-block btn-sm">Update</button>
@@ -100,8 +123,9 @@
                             {{Auth::user()->profile->last_name}}
                         </p>
                         <p><b>Email: </b> {{Auth::user()->email}} </p>
+                        <p><b>Phone: </b> {{Auth::user()->profile->phone}} </p>
                         <p><b>Address: </b> {{Auth::user()->profile->address}} </p>
-                        <p><b>Biodata: </b> {{Auth::user()->profile->bio}} </p>
+                        <p><b>Objective: </b> {{Auth::user()->profile->bio}} </p>
                         <p><b>Member Since: </b> {{date('F d Y',strtotime(Auth::user()->profile->created_at))}} </p>
                         @if(!empty(Auth::user()->profile->cover_letter))
                             <a href="{{Storage::url(Auth::user()->profile->cover_letter)}}">
