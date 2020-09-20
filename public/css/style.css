@@ -1,6 +1,48 @@
+html,
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.clr{
+    clear: both;
+}
+.red{
+    color: #ff0000;
+}
 td.logoimage {
     height: 100px;
     width: 90px;
-    left"BOX-SHADOW: 0 0 BLACK;
-    position: absolute;
+    left"BOX-SHADOW: 0 0 BLACK;s
+}
+.cover-photo {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.cover img{
+    width:100%;
+    max-height: 500px;
+    min-height: 300px;
+    display: inline-block;
+}
+
+.comlogo img {
+    height: 115px;
+    width: 150px;
+    border: 1px solid darkgoldenrod;
+    border-radius: 6%;
+    box-shadow: 0 0 5px -1px #888;
+    position: relative;
+    top: -70px;
+}
+.img-fluid.cover_photo {
+    box-shadow: 1px 1px 2px 0px #888;
+}
+.applicant_photo img{
+    width: 100%;
+    border: 2px solid #b3b2b2;
+    display:inline-block;
+    border-radius:5%;
+    box-shadow: 0 0 5px -1px #888;
 }
