@@ -40,15 +40,17 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @if(Auth::user()->user_type =='employer')
-                                <a class="dropdown-item" href="{{ route('company.create') }}">
-                                    {{ __('Company') }}
+                                <a class="dropdown-item" href="{{ route('company.create') }}"><i class="fas fa-business-time"></i> &nbsp; {{ __('Company') }}
+                                </a>
+                            @else
+                                <a class="dropdown-item" href="{{ route('user.profile') }}"><i class="fas fa-user"></i> &nbsp; {{ __('Profile') }}
                                 </a>
                             @endif
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                <i class="fas fa-sign-out-alt"></i> &nbsp; {{ __('Logout') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
