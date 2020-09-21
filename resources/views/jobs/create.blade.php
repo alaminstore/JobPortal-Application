@@ -8,6 +8,7 @@
                     <div class="card-header">{{ __('Dashboard') }}</div>
                     <div class="card-body">
                         <form action="{{route('jobs.store')}}" method="post">
+                              @csrf
                             <div class="form-group">
                                 <label for="title">Job title</label>
                                 <input type="text" name="title" class="form-control">
