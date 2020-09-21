@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
                     <div class="card-body">
-                        <form action=""{{route('jobs.store')}} method="post">
+                        <form action="{{route('jobs.store')}}" method="post">
                             <div class="form-group">
                                 <label for="title">Job title</label>
                                 <input type="text" name="title" class="form-control">
