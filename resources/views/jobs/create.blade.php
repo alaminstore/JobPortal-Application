@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> {{ __('Job Post') }}</div>
                     <div class="card-body">
                         @if(Session::has('message'))
                             <div class="alert alert-success">
@@ -92,7 +92,7 @@
                                     {{$errors->first('last_date')}}
                                 </div>
                             @endif
-                            
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-secondary btn-block btn-sm"> <i class="fa fa-share-square" aria-hidden="true"></i> Submit The Job</button>
                             </div>
