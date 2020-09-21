@@ -7,6 +7,11 @@
                 <div class="card">
                     <div class="card-header">{{ __('Job Post') }}</div>
                     <div class="card-body">
+                        @if(Session::has('message'))
+                            <div class="alert alert-success">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>  {{Session::get('message')}}
+                            </div>
+                        @endif
                         <form action="{{route('jobs.store')}}" method="post">
                               @csrf
                             <div class="form-group">
