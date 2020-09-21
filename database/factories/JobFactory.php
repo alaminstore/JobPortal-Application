@@ -25,7 +25,7 @@ class JobFactory extends Factory
         return [
             'user_id'=> \App\Models\User::all()->random()->id,
             'company_id' => \App\Models\Company::all()->random()->id,
-            'title' => $title = $this->faker->companySuffix,
+            'title' => $title = $this->faker->company,
             'slug' => Str::slug($title),
             'description'=> $this->faker->paragraph(rand(3,10)),
             'category_id' =>rand(0,1),
