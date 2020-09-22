@@ -9,7 +9,9 @@ use Illuminate\Support\Str;
 class JobController extends Controller
 {
     public function index(){
-        $jobs = Job::all()->take(10);
+      //  $jobs = Job::all()->take(10);
+        $jobs = Job::orderBy('id','desc')->take(10)->get();
+
         return view('welcome',compact('jobs'));
     }
 
@@ -49,7 +51,9 @@ class JobController extends Controller
 
     public function myjobs(){
         $user_id = auth()->user()->id;
-        $jobs = Job::where('user_id',$user_id)->get();
+        $jobs = Job::where('user_id',$user_id)
+            ->orderBy('id', 'desc')   //asc order - also can use
+            ->get();
         return view('jobs.myjobs',compact('jobs'));
     }
 }
