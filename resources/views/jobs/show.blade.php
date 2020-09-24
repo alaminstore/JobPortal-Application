@@ -5,7 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ $job->title }}</div>
+                    <div class="card-header">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i><i class="fa fa-ellipsis-v" aria-hidden="true"></i><i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        {{ $job->title }}
+                    </div>
 
                     <div class="card-body">
                        <p>
@@ -44,10 +47,12 @@
                                 <button class="btn btn-secondary  btn-block btn-sm">Apply The Job</button>
                             </form>
                         @else
-                            <p class=" text-center alert alert-"><b>Applied</b></p>
+                            <div class="alert alert-success text-center" role="alert">
+                                <i class="fa fa-check-circle" aria-hidden="true"> Applied</i>
+                            </div>
                         @endif
                     @else
-                        <p class=" text-center alert alert-warning"><b>Login to apply</b></p>
+                        <p class=" text-center alert alert-warning" role="alert"><b>Login to apply</b></p>
                     @endif
                 </div>
             </div>
