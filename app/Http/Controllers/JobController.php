@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 class JobController extends Controller
 {
     public function index(){
@@ -52,8 +53,14 @@ class JobController extends Controller
     public function myjobs(){
         $user_id = auth()->user()->id;
         $jobs = Job::where('user_id',$user_id)
-            ->orderBy('id', 'desc')   //asc order - also can use
+            ->orderBy('id', 'desc')   //asc order - also can use but desc by default
             ->get();
         return view('jobs.myjobs',compact('jobs'));
+    }
+
+    public function apply(Request $request,$id){
+        $job_id = Job::find($id);
+        $job_id->users()->attach(Auth::user()->id);
+        return redirect()->back()->with('message','You applied successfully.');
     }
 }
