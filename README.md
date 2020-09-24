@@ -4,8 +4,13 @@
 
 ## Screenshot
 
-<img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/ApplicantProfile.png" width="400">
-<img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/Posted_Job_List.png" width="400">
-<img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/applicants.png" width="400">
-<img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/size.png">
+
+
+
+<p float="left">
+  <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/ApplicantProfile.png" width="400">
+  <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/Posted_Job_List.png" width="400">
+  <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/applicants.png" width="400">
+  <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/size.png">
+</p>
 
