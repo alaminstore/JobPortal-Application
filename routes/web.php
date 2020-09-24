@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\EmployerProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,21 +22,33 @@ use App\Http\Controllers\UserProfileController;
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//job
-Route::get('/',[JobController::class,'index']);
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//job (Company)
+Route::get('/',[JobController::class,'index'])->name('job.index');
 Route::get('jobs/{id}/{job}',[JobController::class,'show'])->name('jobs.show');
+Route::get('jobs/create',[JobController::class,'create'])->name('jobs.create');
+Route::post('jobs/store',[JobController::class,'store'])->name('jobs.store');
+Route::get('jobs/myjobs',[JobController::class,'myjobs'])->name('jobs.myjobs');
+Route::post('jobs/apply/{id}',[JobController::class,'apply'])->name('jobs.apply');
+Route::get('jobs/applicants',[JobController::class,'applicants']);
+
 
 //company
 Route::get('company/{id}/{company}',[CompanyController::class,'index'])->name('company.index');
+Route::get('company/create',[CompanyController::class,'create'])->name('company.create');
+Route::post('company/store',[CompanyController::class,'store'])->name('company.store');
+Route::post('company/coverphoto',[CompanyController::class,'coverphoto'])->name('company.coverphoto');
+Route::post('company/logo',[CompanyController::class,'logo'])->name('company.logo');
 
 //userProfile
-Route::get('user/profile', [UserProfileController::class, 'index']);
+Route::get('user/profile', [UserProfileController::class, 'index'])->name('user.profile');
 Route::post('profile/store',[UserProfileController::class, 'store'])->name('profile.store');
 Route::post('profile/coverletter',[UserProfileController::class, 'coverletter'])->name('profile.coverletter');
 Route::post('profile/resume',[UserProfileController::class, 'resume'])->name('profile.resume');
 Route::post('profile/avatar',[UserProfileController::class, 'avatar'])->name('profile.avatar');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+//employer
+Route::view('employer/profile','auth.employer-reg')->name('employer.reg');
+Route::post('employer/profile/store',[EmployerProfileController::class, 'store'])->name('employer.store');
