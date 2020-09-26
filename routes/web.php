@@ -5,6 +5,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EmployerProfileController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,8 @@ use App\Http\Controllers\EmployerProfileController;
 */
 
 
-
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //job (Company)
 Route::get('/',[JobController::class,'index'])->name('job.index');
@@ -32,7 +29,8 @@ Route::get('jobs/create',[JobController::class,'create'])->name('jobs.create');
 Route::post('jobs/store',[JobController::class,'store'])->name('jobs.store');
 Route::get('jobs/myjobs',[JobController::class,'myjobs'])->name('jobs.myjobs');
 Route::post('jobs/apply/{id}',[JobController::class,'apply'])->name('jobs.apply');
-Route::get('jobs/applicants',[JobController::class,'applicants']);
+Route::get('jobs/applicants',[JobController::class,'applicants'])->name('jobs.applicants');
+Route::get('jobs/alljobs',[JobController::class,'alljobs'])->name('jobs.alljobs');
 
 
 //company
