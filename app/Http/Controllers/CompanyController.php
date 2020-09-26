@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index($id,Company $company){
         return view('company.index',compact('company'));
     }
@@ -18,7 +21,7 @@ class CompanyController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'address'=>'required',
-            'phone'=>'required|regex:/(01)[0-9](9)/',
+            'phone'=>'required',
             'website'=>'required',
             'slogan'=>'required',
             'description'=>'required|min:20',
@@ -36,15 +39,20 @@ class CompanyController extends Controller
 
     public function coverphoto(Request $request){
         $this->validate($request,[
-            'cover_photo'=>'required|mimes:jpg,png,jpeg|max:2048'
+            'cover_photo' =>'required|mimes:jpg,jpeg,png|max:1024',
         ]);
         $user_id = auth()->user()->id;
-        $cover = $request->file('cover_photo')
-            ->store('public/files');
-        Company::where('user_id',$user_id)->update([
-            'cover_photo'=>$cover,
-        ]);
-        return redirect()->back()->with('message','Cover Photo updated successfully');
+        if ($request->hasFile('cover_photo')){
+            $file = $request->file('cover_photo');
+            $text = $file->getClientOriginalExtension();
+            $filename = time().'.'.$text;
+            $file->move('upload/cover',$filename);
+            Company::where('user_id',$user_id)->update([
+                'cover_photo' =>$filename,
+            ]);
+
+            return redirect()->back()->with('message','Company Cover Photo Updated');
+        }
     }
 
     public function logo(Request $request){
