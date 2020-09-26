@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\User;
 
 class UserProfileController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index(){
         return view('profile.index');
     }
@@ -15,7 +19,7 @@ class UserProfileController extends Controller
            'dob'=>'required',
            'gender'=>'required',
            'address'=>'required',
-           'phone'=>'required|regex:/(01)[0-9](9)/',
+           'phone'=>'required',                  // |regex:/(01)[0-9](9)/
            'bio'=>'required|min:20',
            'experience'=>'required',
         ]);
