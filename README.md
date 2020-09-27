@@ -11,6 +11,7 @@
   <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/ApplicantProfile.png" width="400">
   <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/applicants.png" width="400">
   <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/companyProfile.png" width="400">
+  <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/joblist.png" width="400">
   <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/companysAllposts.png width="400">
   <img src="https://github.com/alaminstore/JobPortal-Application/blob/master/screenshots/size.png">
 </p>
